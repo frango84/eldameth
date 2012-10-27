@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Support function Plug-in
+Bundle-SymbolicName: SupportFunctionModel;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.emf.ecore,
+ DSCModel
+Export-Package: function,
+ function.impl,
+ function.util
+Bundle-Vendor: lisdip.deis.unical.it

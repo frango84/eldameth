@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="dscDiagramModel" size="967,583" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#/" metadata="emf-1.0" initialized="true" tag="1000" key="3230303530393237206D6F64656C2F73616D75656C65">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0" name="GenericDiagram" location="20,19" size="323,57" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//GenericDiagram" runTimeClassModel="maxID">
+    <children xsi:type="editmodel:CompartmentEditModel" size="84,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="maxID" location="14,20" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//GenericDiagram/maxID">
+        <model href="../../genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//GenericDiagram/maxID"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="../../genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//GenericDiagram"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="DSCDiagram" location="100,154" size="224,129" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//DSCDiagram" runTimeClassModel="diagramVariables,guardFile,actionFile,functionFile,eventFile">
+    <children xsi:type="editmodel:CompartmentEditModel" size="202,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="eventFile" id="platform:/resource/model/model/dscDiagramModel.ecore#//DSCDiagram/eventFile">
+        <model href="dscDiagramModel.ecore#//DSCDiagram/eventFile"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="guardFile" id="platform:/resource/model/model/dscDiagramModel.ecore#//DSCDiagram/guardFile">
+        <model href="dscDiagramModel.ecore#//DSCDiagram/guardFile"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="actionFile" id="platform:/resource/model/model/dscDiagramModel.ecore#//DSCDiagram/actionFile">
+        <model href="dscDiagramModel.ecore#//DSCDiagram/actionFile"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="functionFile" id="platform:/resource/model/model/dscDiagramModel.ecore#//DSCDiagram/functionFile">
+        <model href="dscDiagramModel.ecore#//DSCDiagram/functionFile"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="diagramVariables" id="platform:/resource/model/model/dscDiagramModel.ecore#//DSCDiagram/DiagramVariables">
+        <model href="dscDiagramModel.ecore#//DSCDiagram/diagramVariables"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="111,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="191,57"/>
+    </sourceConnections>
+    <model href="dscDiagramModel.ecore#//DSCDiagram"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0 //@children.4/@sourceConnections.0" name="Relationship" location="13,340" size="298,57" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Relationship" runTimeClassModel="bendpoints">
+    <children xsi:type="editmodel:CompartmentEditModel" size="182,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="bendpoints" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Relationship/bendpoints">
+        <model href="../../genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Relationship/bendpoints"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="../../genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Relationship"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="AnchorNoteToItem" location="13,430" size="160,29" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//AnchorNoteToItem" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.3" target="//@children.2" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,57"/>
+    </sourceConnections>
+    <model href="dscDiagramModel.ecore#//AnchorNoteToItem"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Transition" location="189,470" size="122,93" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//Transition" runTimeClassModel="eventID,guardID,actionID">
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="eventID" id="platform:/resource/model/model/dscDiagramModel.ecore#//Transition/EventID">
+        <model href="dscDiagramModel.ecore#//Transition/eventID"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="guardID" id="platform:/resource/model/model/dscDiagramModel.ecore#//Transition/GuardID">
+        <model href="dscDiagramModel.ecore#//Transition/guardID"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="actionID" id="platform:/resource/model/model/dscDiagramModel.ecore#//Transition/ActionID">
+        <model href="dscDiagramModel.ecore#//Transition/actionID"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.4" target="//@children.2" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="60,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="236,57"/>
+    </sourceConnections>
+    <model href="dscDiagramModel.ecore#//Transition"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="Variable" location="350,190" size="77,43" stereotype="datatype" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//Variable">
+    <model href="dscDiagramModel.ecore#//Variable"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.0 //@children.8/@sourceConnections.0 //@children.9/@sourceConnections.0" name="Classifier" location="500,33" size="277,29" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Classifier" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="../../genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Classifier"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="StartPoint" location="470,126" size="105,29" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//StartPoint" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.7" target="//@children.6" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="67,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="37,29"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.7" target="//@children.10" targetEnd="//@children.7/@sourceConnections.1/@children.1" sourceEnd="//@children.7/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="startPoint" location="69,29" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//CompositeState/startPoint" attachSource="true" multiplicityLabel="//@children.7/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.7/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="startPoint" location="520,151" size="45,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="-21.0" distanceFromWire="3.0000000000000093" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="526,162" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="dscDiagramModel.ecore#//DSCState/startPoint"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="compositeState" location="19,0" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//StartPoint/compositeState" multiplicityLabel="//@children.7/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.7/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="compositeState" location="504,239" size="74,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="17.0" distanceFromWire="7.0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="541,233" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="dscDiagramModel.ecore#//StartPoint/compositeState"/>
+      </children>
+    </sourceConnections>
+    <model href="dscDiagramModel.ecore#//StartPoint"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ShallowHistory" location="590,126" size="137,29" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//ShallowHistory" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.8" target="//@children.6" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="68,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="158,29"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.8" target="//@children.10" targetEnd="//@children.8/@sourceConnections.1/@children.1" sourceEnd="//@children.8/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="shallowHistory" location="35,29" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//CompositeState/shallowHistory" attachSource="true" multiplicityLabel="//@children.8/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.8/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="shallowHistory" location="600,183" size="72,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="-13.0" distanceFromWire="11.000000000000002" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="600,162" size="18,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="dscDiagramModel.ecore#//DSCState/shallowHistory"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="compositeState" location="110,0" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//ShallowHistory/compositeState" multiplicityLabel="//@children.8/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.8/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="compositeState" location="600,214" size="74,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="17.0" distanceFromWire="12.000000000000002" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="612,233" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="dscDiagramModel.ecore#//ShallowHistory/compositeState"/>
+      </children>
+    </sourceConnections>
+    <model href="dscDiagramModel.ecore#//ShallowHistory"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.1" name="DeepHistory" location="725,126" size="118,29" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//DeepHistory" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.9" target="//@children.6" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="25,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="250,29"/>
+    </sourceConnections>
+    <model href="dscDiagramModel.ecore#//DeepHistory"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.1 //@children.8/@sourceConnections.1" name="DSCState" location="515,254" size="147,75" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//CompositeState" runTimeClassModel="isSimple,Variables">
+    <children xsi:type="editmodel:CompartmentEditModel" size="124,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="Variables" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//DSCState/Variables">
+        <model href="dscDiagramModel.ecore#//DSCState/Variables"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="isSimple" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//DSCState/isSimple">
+        <model href="dscDiagramModel.ecore#//DSCState/isSimple"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.10" target="//@children.11" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="73,75" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="130,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.1/@children.1" sourceEnd="//@children.10/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="compositeState" location="147,40" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//DeepHistory/compositeState" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="compositeState" location="669,301" size="74,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="669,273" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="dscDiagramModel.ecore#//DeepHistory/compositeState"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="deepHistory" location="36,29" id="platform:/resource/dscDiagramModel/model/dscDiagramModel.ecore#//CompositeState/deepHistory" multiplicityLabel="//@children.10/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="deepHistory" location="735,199" size="58,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="18.0" distanceFromWire="1.0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="740,162" size="18,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="dscDiagramModel.ecore#//DSCState/deepHistory"/>
+      </children>
+      <bendpoints secondRelativeDimension="25,116" firstRelativeDimension="178,17"/>
+    </sourceConnections>
+    <model href="dscDiagramModel.ecore#//DSCState"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.0" name="Container" location="458,390" size="281,29" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Container" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="../../genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Container"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="DiagramVariable" location="9,99" size="131,43" stereotype="datatype" id="platform:/resource/model/model/dscDiagramModel.ecore#//DiagramVariable">
+    <model href="dscDiagramModel.ecore#//DiagramVariable"/>
+  </children>
+  <model href="dscDiagramModel.ecore#/"/>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="10,10" gridOrigin="0,0" rulerUnit="pixel">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:EMFClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true"/>
+</editmodel:ClassDiagramEditModel>

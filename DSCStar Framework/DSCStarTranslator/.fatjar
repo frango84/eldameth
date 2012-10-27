@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu Oct 25 17:12:54 CEST 2012
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=C\:\\Users\\Utente\\Desktop\\DSCStarTranslator.jar
+manifest.mergeall=true
+manifest.mainclass=gui.Starter
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=

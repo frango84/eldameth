@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="actionGuardModel" size="571,304" id="platform:/resource/ActionGuardModel/model/actionGuardModel.ecore#/" metadata="emf-1.0" initialized="true" tag="1000" key="323030353039323720416374696F6E47756172644D6F64656C2F73616D75656C65">
+  <children xsi:type="editmodel:ClassEditModel" name="AnElementList" location="63,82" size="133,29" id="platform:/resource/ActionGuardModel/model/actionGuardModel.ecore#//AnElementList" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.0" target="//@children.1" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="anElementList" location="133,14" id="platform:/resource/ActionGuardModel/model/actionGuardModel.ecore#//AnElement/anElementList" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="anElementList" location="203,75" size="66,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="203,103" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="actionGuardModel.ecore#//AnElement/anElementList"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="anElement" location="0,14" id="platform:/resource/ActionGuardModel/model/actionGuardModel.ecore#//AnElementList/anElement" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="anElement" location="304,75" size="49,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="349,103" size="4,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="actionGuardModel.ecore#//AnElementList/anElement"/>
+      </children>
+    </sourceConnections>
+    <model href="actionGuardModel.ecore#//AnElementList"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0" name="AnElement" location="360,82" size="125,93" id="platform:/resource/ActionGuardModel/model/actionGuardModel.ecore#//AnElement" runTimeClassModel="comment,name,body">
+    <children xsi:type="editmodel:CompartmentEditModel" size="102,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="body" id="platform:/resource/ActionGuardModel/model/actionGuardModel.ecore#//AnElement/body">
+        <model href="actionGuardModel.ecore#//AnElement/body"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="comment" id="platform:/resource/ActionGuardModel/model/actionGuardModel.ecore#//AnElement/comment">
+        <model href="actionGuardModel.ecore#//AnElement/comment"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="platform:/resource/ActionGuardModel/model/actionGuardModel.ecore#//AnElement/name">
+        <model href="actionGuardModel.ecore#//AnElement/name"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="actionGuardModel.ecore#//AnElement"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <model href="actionGuardModel.ecore#/"/>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="10,10" gridOrigin="0,0" rulerUnit="pixel">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:EMFClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true"/>
+</editmodel:ClassDiagramEditModel>

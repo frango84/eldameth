@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="triggerModel"
+    nsURI="http://event" nsPrefix="event">
+  <eClassifiers xsi:type="ecore:EClass" name="TriggerList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" upperBound="-1"
+        eType="#//Trigger" containment="true" eOpposite="#//Trigger/triggerList"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Trigger">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="triggerList" lowerBound="1"
+        eType="#//TriggerList" eOpposite="#//TriggerList/trigger"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendUDEvent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedEvent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" upperBound="-1"
+        eType="ecore:EDataType ../../DSCModel/model/dscDiagramModel.ecore#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="triggerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

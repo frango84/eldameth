@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="genericUMLDiagramEditor.editor.GenericDiagramEditor"
+            contributorClass="genericUMLDiagramEditor.editor.GenericDiagramEditorActionBarContributor"
+            default="false"
+            extensions="generic"
+            icon="generic.gif"
+            id="genericUMLDiagramEditor.editor"
+            name="Generic Diagram"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="Metameth"
+            name="Metameth"
+            />
+      <wizard
+            category="Metameth"
+            class="genericUMLDiagramEditor.editor.GenericDiagramCreationWizard"
+            icon="generic.gif"
+            id="genericDiagramEditor.wizard1"
+            name="Generic Diagram">
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+</plugin>

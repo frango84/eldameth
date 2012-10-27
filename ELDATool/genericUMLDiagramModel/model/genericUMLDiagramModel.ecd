@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="genricUMLDiagramModel" size="1303,710" id="platform:/resource/genericUMLDiagramModel/model/pippo.ecore#/" metadata="emf-1.0" initialized="true" scrolledX="8" scrolledY="-35" tag="1000" key="32303035303932372067656E65726963554D4C4469616772616D4D6F64656C2F416E67656C6F">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.0 //@children.2/@sourceConnections.1 //@children.2/@sourceConnections.2 //@children.3/@sourceConnections.0" name="ModelElement" location="480,102" size="135,111" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//ModelElement" runTimeClassModel="stereotype,description,name,ID">
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="description" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//ModelElement/description">
+        <model href="genericUMLDiagramModel.ecore#//ModelElement/description"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//ModelElement/name">
+        <model href="genericUMLDiagramModel.ecore#//ModelElement/name"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="stereotype" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ModelElement/stereotype">
+        <model href="genericUMLDiagramModel.ecore#//ModelElement/stereotype"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="ID" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ModelElement/ID">
+        <model href="genericUMLDiagramModel.ecore#//ModelElement/ID"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="genericUMLDiagramModel.ecore#//ModelElement"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Classifier" location="385,440" size="100,29" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//Classifier" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,18"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.4/@sourceConnections.0 //@children.9/@sourceConnections.0 //@children.7/@sourceConnections.0" autoLocated="true" source="//@children.1" target="//@children.8" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="49,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="99,75" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//Classifier"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.1" name="Relationship" location="720,250" size="205,57" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//Relationship" runTimeClassModel="bendpoints">
+    <children xsi:type="editmodel:CompartmentEditModel" size="183,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="bendpoints" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//Relationship/bendpoints">
+        <model href="genericUMLDiagramModel.ecore#//Relationship/bendpoints"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" source="//@children.2" target="//@children.8/@sourceConnections.0" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,27" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="1,1" anchorKind="FixedAtEdge" attachSource="true"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.2" target="//@children.0" targetEnd="//@children.2/@sourceConnections.1/@children.1" sourceEnd="//@children.2/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="targetRelationships" location="142,0" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ModelElement/targetRelationships" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.2/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="targetRelationships" location="883,238" size="92,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="-56.99999999999999" distanceFromWire="-67.0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="851,229" size="4,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="genericUMLDiagramModel.ecore#//ModelElement/targetRelationships"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="target" location="135,27" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Relationship/target" multiplicityLabel="//@children.2/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.2/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="target" location="620,111" size="28,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="104.0" distanceFromWire="-10.00000000000009" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="622,136" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="genericUMLDiagramModel.ecore#//Relationship/target"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.2" target="//@children.0" targetEnd="//@children.2/@sourceConnections.2/@children.1" sourceEnd="//@children.2/@sourceConnections.2/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="sourceRelationships" location="52,0" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ModelElement/sourceRelationships" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.2/@children.0/@children.1" roleLabel="//@children.2/@sourceConnections.2/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="sourceRelationships" location="779,229" size="98,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="761,229" size="4,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="genericUMLDiagramModel.ecore#//ModelElement/sourceRelationships"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="source" location="135,93" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Relationship/source" multiplicityLabel="//@children.2/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.2/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="source" location="626,171" size="34,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="50.0" distanceFromWire="-16.000000000000014" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="622,202" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="genericUMLDiagramModel.ecore#//Relationship/source"/>
+      </children>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//Relationship"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="GenericDiagram" location="490,-30" size="146,57" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//GenericDiagram" runTimeClassModel="maxID">
+    <children xsi:type="editmodel:CompartmentEditModel" size="84,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="maxID" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//GenericDiagram/maxID">
+        <model href="genericUMLDiagramModel.ecore#//GenericDiagram/maxID"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.3" target="//@children.0" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="parent" location="63,57" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ModelElement/parent" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.3/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="parent" location="560,34" size="31,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="540,34" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="genericUMLDiagramModel.ecore#//ModelElement/parent"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="modelElements" location="73,0" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//GenericDiagram/modelElements" multiplicityLabel="//@children.3/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.0/@children.1/@children.0" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="modelElements" location="560,81" size="71,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="542,81" size="4,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="genericUMLDiagramModel.ecore#//GenericDiagram/modelElements"/>
+      </children>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//GenericDiagram"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Container" location="640,440" size="104,29" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//Container" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,18"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" source="//@children.4" target="//@children.1/@sourceConnections.0" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,-165" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.4" target="//@children.8" targetEnd="//@children.4/@sourceConnections.1/@children.1" sourceEnd="//@children.4/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="container" location="49,0" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//VisualElement/container" attachSource="true" multiplicityLabel="//@children.4/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.4/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="container" location="696,419" size="45,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="664,419" size="18,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="genericUMLDiagramModel.ecore#//VisualElement/container"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="visualElements" location="199,34" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Container/visualElements" multiplicityLabel="//@children.4/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.4/@sourceConnections.1/@children.1/@children.0" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="visualElements" location="592,313" size="71,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="592,341" size="4,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="genericUMLDiagramModel.ecore#//Container/visualElements"/>
+      </children>
+      <bendpoints secondRelativeDimension="237,-1" firstRelativeDimension="-1,-136"/>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//Container"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="Point" location="40,70" size="233,43" stereotype="datatype" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//Point">
+    <model href="genericUMLDiagramModel.ecore#//Point"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="Dimension" location="40,20" size="267,43" stereotype="datatype" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//Dimension">
+    <model href="genericUMLDiagramModel.ecore#//Dimension"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Note" location="50,440" size="131,57" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//Note" runTimeClassModel="comment">
+    <children xsi:type="editmodel:CompartmentEditModel" size="103,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="comment" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//Note/comment">
+        <model href="genericUMLDiagramModel.ecore#//Note/comment"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.7" target="//@children.1/@sourceConnections.0" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="64,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="-93,-203" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//Note"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.4/@sourceConnections.1" name="VisualElement" location="385,300" size="200,75" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//VisualElement" runTimeClassModel="size,location">
+    <children xsi:type="editmodel:CompartmentEditModel" size="95,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="location" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//VisualElement/location">
+        <model href="genericUMLDiagramModel.ecore#//VisualElement/location"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="size" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//VisualElement/size">
+        <model href="genericUMLDiagramModel.ecore#//VisualElement/size"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.2/@sourceConnections.0" autoLocated="true" source="//@children.8" target="//@children.0" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="99,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="67,109" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//VisualElement"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.0" name="AuxiliaryElement" location="210,440" size="151,29" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//AuxiliaryElement" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.9" target="//@children.1/@sourceConnections.0" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="74,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="-93,-161" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//AuxiliaryElement"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.0" name="TextLabel" location="150,527" size="118,57" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//TextLabel" runTimeClassModel="text">
+    <children xsi:type="editmodel:CompartmentEditModel" size="78,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="text" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//TextLabel/text">
+        <model href="genericUMLDiagramModel.ecore#//TextLabel/text"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.11/@sourceConnections.0 //@children.13/@sourceConnections.0" autoLocated="true" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="57,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="74,29" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//TextLabel"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="HorizontalLineSeparator" location="290,527" size="205,29" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//LineSeparator" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.11" target="//@children.10/@sourceConnections.0" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="101,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,-160" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//HorizontalLineSeparator"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="AbsoluteBendpoint" location="44,130" size="143,43" stereotype="datatype" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//AbsoluteBendpoint">
+    <model href="genericUMLDiagramModel.ecore#//AbsoluteBendpoint"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="VerticalLineSeparator" location="540,527" size="206,29" id="platform:/resource/genericUMLDiagramModel/genericUMLDiagramModel.ecore#//VerticalLineSeparator" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.13" target="//@children.10/@sourceConnections.0" targetEnd="//@children.13/@sourceConnections.0/@children.1" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="102,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="-156,-161" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//VerticalLineSeparator"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ConnectionLabel" location="134,620" size="150,75" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ConnectionLabel" runTimeClassModel="isVisible,offset">
+    <children xsi:type="editmodel:CompartmentEditModel" size="110,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="offset" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ConnectionLabel/offset">
+        <model href="genericUMLDiagramModel.ecore#//ConnectionLabel/offset"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="isVisible" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ConnectionLabel/isVisible">
+        <model href="genericUMLDiagramModel.ecore#//ConnectionLabel/isVisible"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.14" target="//@children.10" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="75,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="59,57"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.14" target="//@children.2" targetEnd="//@children.14/@sourceConnections.1/@children.1" sourceEnd="//@children.14/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="connectionLabel" location="150,13" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//Relationship/connectionLabel" attachSource="true" multiplicityLabel="//@children.14/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.14/@sourceConnections.1/@children.0/@children.0" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="connectionLabel" location="291,640" size="79,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="291,612" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <model href="genericUMLDiagramModel.ecore#//Relationship/connectionLabel"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="relationship" location="106,57" id="platform:/resource/genericUMLDiagramModel/model/genericUMLDiagramModel.ecore#//ConnectionLabel/relationship" multiplicityLabel="//@children.14/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.14/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="relationship" location="833,314" size="55,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="813,314" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="genericUMLDiagramModel.ecore#//ConnectionLabel/relationship"/>
+      </children>
+    </sourceConnections>
+    <model href="genericUMLDiagramModel.ecore#//ConnectionLabel"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <model href="genericUMLDiagramModel.ecore#/"/>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=7" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="10,10" gridOrigin="0,0" rulerUnit="pixel">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:EMFClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true"/>
+</editmodel:ClassDiagramEditModel>

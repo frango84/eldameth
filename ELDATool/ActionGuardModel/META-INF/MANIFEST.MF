@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ActionGuard Model Plug-in
+Bundle-SymbolicName: ActionGuardModel;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: lisdip.deis.unical.it
+Bundle-Localization: plugin
+Export-Package: actionGuardModel,
+ actionGuardModel.impl,
+ actionGuardModel.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Eclipse-LazyStart: true

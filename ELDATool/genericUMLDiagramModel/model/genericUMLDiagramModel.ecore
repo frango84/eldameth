@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="genericUMLDiagramModel"
+    nsURI="http://genericUMLDiagramModel" nsPrefix="genericUMLDiagramModel">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" lowerBound="1"
+        eType="#//GenericDiagram" eOpposite="#//GenericDiagram/modelElements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRelationships" upperBound="-1"
+        eType="#//Relationship" eOpposite="#//Relationship/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetRelationships" upperBound="-1"
+        eType="#//Relationship" eOpposite="#//Relationship/target"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Classifier" eSuperTypes="#//VisualElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ModelElement" eOpposite="#//ModelElement/sourceRelationships"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//ModelElement" eOpposite="#//ModelElement/targetRelationships"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bendpoints" upperBound="-1"
+        eType="#//AbsoluteBendpoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionLabel" lowerBound="1"
+        eType="#//ConnectionLabel" containment="true" eOpposite="#//ConnectionLabel/relationship"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
+        eType="#//ModelElement" containment="true" eOpposite="#//ModelElement/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//VisualElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visualElements" upperBound="-1"
+        eType="#//VisualElement" containment="true" eOpposite="#//VisualElement/container"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Point" instanceClassName="org.eclipse.draw2d.geometry.Point"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Dimension" instanceClassName="org.eclipse.draw2d.geometry.Dimension"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Note" eSuperTypes="#//VisualElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VisualElement" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//Point"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="#//Dimension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//Container"
+        eOpposite="#//Container/visualElements"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AuxiliaryElement" eSuperTypes="#//VisualElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TextLabel" eSuperTypes="#//AuxiliaryElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HorizontalLineSeparator" eSuperTypes="#//AuxiliaryElement"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="AbsoluteBendpoint" instanceClassName="org.eclipse.draw2d.AbsoluteBendpoint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VerticalLineSeparator" eSuperTypes="#//AuxiliaryElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectionLabel" eSuperTypes="#//TextLabel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" eType="#//Point"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relationship" lowerBound="1"
+        eType="#//Relationship" eOpposite="#//Relationship/connectionLabel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVisible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+</ecore:EPackage>

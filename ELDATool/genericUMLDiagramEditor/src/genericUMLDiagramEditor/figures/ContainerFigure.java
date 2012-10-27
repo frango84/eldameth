@@ -1,0 +1,99 @@
+/*****************************************************************
+ELDATool
+Copyright (C) 2012 G. Fortino
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation;
+version 2.1 of the License.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+*****************************************************************/
+
+package genericUMLDiagramEditor.figures;
+
+import genericUMLDiagramModel.VisualElement;
+
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Insets;
+import org.eclipse.draw2d.geometry.Rectangle;
+
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
+
+/**
+ * Create the view of a Container
+ * 
+ * @author marguu&zaza
+ *
+ */
+public class ContainerFigure extends GenericFigure {
+	
+
+	VisualElement container;
+	
+public ContainerFigure(VisualElement container) {
+	super(container);
+	this.container=container;
+	 XYLayout layout = new XYLayout();
+    
+	 setLayoutManager(layout);	
+	 bounds.height=150;
+	 bounds.width=150;
+	 
+	 // Creo il font della figura
+	FontData fd =new FontData("Arial",10,SWT.NONE);
+	font = new Font(null,fd);
+}
+	
+/**
+ * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
+ */
+public void paintFigure(Graphics g) {
+	// Setto il font del graphics
+	g.setFont(font);
+	g.setBackgroundColor(new Color(null,255,255,206));
+	
+	setName(container.getName());
+	setStereotype(container.getStereotype());
+	
+	String name_str="";
+	if(getName()!=null && getName().trim().length()>0)
+		name_str=getName();
+	String stereo_str="";
+	if(getStereotype()!=null && getStereotype().trim().length()>0)
+		stereo_str=getStereotype();
+	
+	int  newWidth=super.getDinamicWidth();
+	
+	if (newWidth>container.getSize().width){
+		
+		container.setSize(new Dimension(newWidth,container.getSize().height));
+		this.bounds.width=newWidth;
+	}
+	
+	r=new Rectangle(this.bounds);
+	
+	r.crop(new Insets(1,1,1,1));
+	g.setClip(r.getExpanded(new Insets(1,1,1,1)));
+	
+	
+	g.fillRectangle(r);
+	g.drawRectangle(r);
+
+	g.fillText(stereo_str,stereo_point(stereo_str));
+	g.fillText(name_str,name_point());
+}
+}

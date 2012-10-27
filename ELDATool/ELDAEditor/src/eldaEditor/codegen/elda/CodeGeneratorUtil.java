@@ -1,0 +1,1028 @@
+/*****************************************************************
+ELDATool
+Copyright (C) 2012 G. Fortino
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation;
+version 2.1 of the License.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+*****************************************************************/
+
+package eldaEditor.codegen.elda;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragment;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.FileEditorInput;
+
+import triggerModel.Trigger;
+import triggerModel.TriggerList;
+import actionGuardModel.AnElement;
+import actionGuardModel.AnElementList;
+import dscDiagramModel.DSCDiagram;
+import dscDiagramModel.DSCState;
+import dscDiagramModel.StartPoint;
+import dscDiagramModel.Transition;
+import dscDiagramModel.impl.DSCStateImpl;
+import dscDiagramModel.myDataTypes.TypeDiagramVariable;
+import dscDiagramModel.myDataTypes.TypeVariable;
+import function.Function;
+import function.FunctionList;
+
+/**
+ * Classe utility per la generazione del codice
+ * 
+ * @author samuele, F. Rango
+ * 
+ */
+public class CodeGeneratorUtil {
+
+	// Il DSCDiagram che rappresenta il behaviour dell'agente di cui si sta
+	// generando l'implementazione
+	private DSCDiagram parent;
+
+	// Le mappe che contengono la corretta posizione di dichiarazione
+	private HashMap<String, Object> guardsMap = new HashMap<String, Object>();
+
+	private HashMap<String, Object> actionsMap = new HashMap<String, Object>();
+
+	private HashMap<String, String> eventsMap = new HashMap<String, String>();
+
+	private HashMap<String, String> functionsMap = new HashMap<String, String>();
+
+	// La lista che contiene gli elementi definiti nei vari modelli
+	// complementari al DSC
+	private AnElementList actionsList;
+
+	private AnElementList guardsList;
+
+	private FunctionList functionsList;
+
+	private TriggerList triggerList;
+
+	// Oggetto che serve a manipolare le risorse
+	private ResourceSet resourceSet = new ResourceSetImpl();
+
+	private IFile fileInput;
+
+	/**
+	 * 
+	 * Inizializza la classe che fornisce le utility
+	 * 
+	 * @param parent
+	 *            il diagramma sulla quale è stato chiamata la generazione
+	 * 
+	 */
+	public CodeGeneratorUtil(DSCDiagram parent, IFile fileInput) {
+		this.parent = parent;
+		this.fileInput = fileInput;
+
+		// carico in memoria tutti i modelli
+		actionsList = loadGoraResource(parent.getActionFile());
+		guardsList = loadGoraResource(parent.getGuardFile());
+		triggerList = loadEventTypeList(parent.getEventFile());
+		functionsList = loadFunctionResource(parent.getFunctionFile());
+
+		// inizializzo le mappe
+		guardsMap.clear();
+		actionsMap.clear();
+		functionsMap.clear();
+
+		// calcolo la posizione di definizione di funzioni, azioni e guardie
+		findFAGDeclarationsPosition();
+
+	}
+
+	/**
+	 * Crea le stringhe relative ai metodi addState
+	 * 
+	 * @param list
+	 *            l'insieme degli stati per i quali questi metodi devono essere
+	 *            generati
+	 * @return la stringa
+	 * 
+	 */
+
+	public StringBuffer createAddStateMethod(EList list) {
+		StringBuffer result = new StringBuffer();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) instanceof DSCState) {
+				String nameState;
+				if (((DSCState) list.get(i)).getName().toUpperCase().equals(""))
+					nameState = "DEFAULT_NAME";
+				else {
+					nameState = ((DSCState) list.get(i)).getName()
+							.toUpperCase().replaceAll(" ", "_");
+				}
+				result.append("addState(\"" + nameState + "\"," + "new "
+						+ nameState + "State"
+						+ "(this, (ELDABehavior)context));" + "\n");
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Crea la definizione delle azioni relative all'ADCS
+	 * 
+	 * @return
+	 */
+	public StringBuffer createActionDefinitionIntoADSC() {
+
+		StringBuffer result = new StringBuffer();
+		StringBuffer finalResult = new StringBuffer();
+
+		Iterator i = actionsMap.entrySet().iterator();
+
+		while (i.hasNext()) {
+			Map.Entry<String, Object> entry = (Map.Entry<String, Object>) i
+					.next();
+
+			if (entry.getValue().equals(parent)) {
+				result
+						.append(replaceFunctionCalled(replaceActionCalled(getGoraBody(
+								actionsList.getAnElement(), entry.getKey(),
+								"void"))));
+			}
+		}
+		if (result.length() != 0) {
+			finalResult.append("\n // Actions Definitions Section \n");
+			finalResult.append(result);
+		}
+		return finalResult;
+	}
+
+	/**
+	 * Crea la definizione delle azioni relative allo state passato come
+	 * parametro
+	 * 
+	 * @return
+	 */
+	public StringBuffer createActionDefinition(DSCState state) {
+
+		StringBuffer result = new StringBuffer();
+		StringBuffer finalResult = new StringBuffer();
+
+		// recuopero tutte le definizioni delle azione e le
+		// metto in un iteratore
+		Iterator i = actionsMap.entrySet().iterator();
+
+		// per ogni elemento della map
+		while (i.hasNext()) {
+			// estraggo l'entry
+			Map.Entry<String, Object> entry = (Map.Entry<String, Object>) i
+					.next();
+
+			// se l'azione è associata allo stato in esame la dichiaro di
+			// seguito allo stato
+			if (entry.getValue().equals(state)) {
+				result
+						.append(replaceFunctionCalled(replaceActionCalled(getGoraBody(
+								actionsList.getAnElement(), entry.getKey(),
+								"void"))));
+			}
+		}
+		if (result.length() != 0) {
+			finalResult.append("\n // Actions Definitions Section \n");
+			finalResult.append(result);
+		}
+		return finalResult;
+	}
+
+	/**
+	 * Ritorna il corpo delle action o guard passata come parametro
+	 * 
+	 * @param list
+	 *            la lista in cui cercare
+	 * @param key
+	 *            l'ID dell' action/guard
+	 * @param type
+	 *            il tipo ritornato
+	 * @return il corpo
+	 */
+
+	private StringBuffer getGoraBody(List list, String key, String type) {
+
+		StringBuffer result = new StringBuffer();
+		result.append("\n private " + type + " " + key + " (ELDAEvent e) \n");
+		result.append("\n{\n");
+		for (int i = 0; i < list.size(); i++) {
+			if (((AnElement) list.get(i)).getName().equals(key)) {
+				if (((AnElement) list.get(i)).getBody() == null)
+					result.append("");
+				else
+					result.append(((AnElement) list.get(i)).getBody());
+			}
+		}
+		result.append("\n}\n");
+
+		return result;
+	}
+
+	private StringBuffer getFunctionBody(List list, String key) {
+
+		StringBuffer result = new StringBuffer();
+
+		for (int i = 0; i < list.size(); i++) {
+			if (((Function) list.get(i)).getName().equals(key.trim())) {
+				String returnedType = "void";
+				if (!((Function) list.get(i)).getReturnedType().equals(""))
+					returnedType = ((Function) list.get(i)).getReturnedType();
+
+				result.append("\n private " + returnedType + " "
+						+ ((Function) list.get(i)).getName() + "( "
+						+ getStringParameters(((Function) list.get(i)))
+						+ " ) \n");
+				result.append("\n{\n");
+				if (((Function) list.get(i)).getBody() == null)
+					result.append("");
+				else
+					result.append(((Function) list.get(i)).getBody());
+			}
+		}
+		result.append("\n}\n");
+
+		return result;
+	}
+
+	/**
+	 * Costruisce una stringa contenente la definizione dei parametri della
+	 * funzione passata come parametro
+	 * 
+	 * @param function
+	 * @return Ritorna una stringa contenente la definizione dei parametri
+	 */
+	private StringBuffer getStringParameters(Function function) {
+
+		StringBuffer stringParameters = new StringBuffer();
+		Iterator paramIterator = function.getParameter().iterator();
+		while (paramIterator.hasNext()) {
+			TypeVariable variable = (TypeVariable) paramIterator.next();
+			stringParameters.append(variable.getType());
+			stringParameters.append(" ");
+			stringParameters.append(variable.getName());
+			if (paramIterator.hasNext()) {
+				stringParameters.append(",");
+				stringParameters.append(" ");
+			}
+		}
+		return stringParameters;
+	}
+
+	/**
+	 * Crea la definizione delle guard relative all'ADSC
+	 * 
+	 * @return
+	 */
+	public StringBuffer createGuardDefinitionIntoADSC() {
+		StringBuffer result = new StringBuffer();
+		StringBuffer finalResult = new StringBuffer();
+
+		Iterator i = guardsMap.entrySet().iterator();
+
+		while (i.hasNext()) {
+			Map.Entry<String, Object> entry = (Map.Entry<String, Object>) i
+					.next();
+
+			if (entry.getValue().equals(parent)) {
+				result
+						.append(replaceFunctionCalled(replaceGuardCalled(getGoraBody(
+								guardsList.getAnElement(), entry.getKey(),
+								"boolean"))));
+			}
+		}
+		if (result.length() != 0) {
+			finalResult.append("\n // Guards Definitions Section \n");
+			finalResult.append(result);
+		}
+		return finalResult;
+	}
+
+	/**
+	 * Crea la definizione delle guard relative allo state passate come
+	 * parametro
+	 * 
+	 * @return
+	 */
+	public StringBuffer createGuardDefinition(DSCState state) {
+		StringBuffer result = new StringBuffer();
+		StringBuffer finalResult = new StringBuffer();
+
+		Iterator i = guardsMap.entrySet().iterator();
+
+		while (i.hasNext()) {
+			Map.Entry<String, Object> entry = (Map.Entry<String, Object>) i
+					.next();
+
+			if (entry.getValue().equals(state)) {
+
+				result
+						.append(replaceFunctionCalled(replaceGuardCalled(getGoraBody(
+								guardsList.getAnElement(), entry.getKey(),
+								"boolean"))));
+			}
+		}
+
+		if (result.length() != 0) {
+			finalResult.append("\n // Guards Definitions Section \n");
+			finalResult.append(result);
+		}
+		return finalResult;
+	}
+
+	public StringBuffer createFunctionDefinition(DSCState state) {
+
+		StringBuffer result = new StringBuffer();
+		StringBuffer finalResult = new StringBuffer();
+
+		Iterator i = functionsMap.entrySet().iterator();
+
+		while (i.hasNext()) {
+			Map.Entry<String, Object> entry = (Map.Entry<String, Object>) i
+					.next();
+
+			if (entry.getValue().equals(state)) {
+				result.append(replaceFunctionCalled((getFunctionBody(
+						functionsList.getFunction(), entry.getKey()))));
+			}
+		}
+
+		if (result.length() != 0) {
+			finalResult.append("\n// Functions Definitions Section \n");
+			finalResult.append(result);
+		}
+		return finalResult;
+	}
+
+	public StringBuffer createFunctionDefinitionIntoADSC() {
+		StringBuffer result = new StringBuffer();
+		StringBuffer finalResult = new StringBuffer();
+
+		Iterator i = functionsMap.entrySet().iterator();
+
+		while (i.hasNext()) {
+			Map.Entry<String, Object> entry = (Map.Entry<String, Object>) i
+					.next();
+
+			if (entry.getValue().equals(parent)) {
+				result.append(replaceFunctionCalled((getFunctionBody(
+						functionsList.getFunction(), entry.getKey()))));
+			}
+		}
+
+		if (result.length() != 0) {
+			finalResult.append("\n // Functions Definitions Section \n");
+			finalResult.append(result);
+		}
+		return finalResult;
+	}
+
+	/**
+	 * Costruisce le HashMap che contengono le informazioni sulla posizione
+	 * della definizione delle Function, Action & Guard
+	 */
+
+	private void findFAGDeclarationsPosition() {
+
+		// carico in memoria tutti gli oggetti che sono del diagramma a
+		// qualunque livello
+		TreeIterator o = parent.eAllContents();
+
+		// li scorro tutti
+		while (o.hasNext()) {
+
+			Object object = o.next();
+
+			// solamente per gli stati
+			if (object instanceof DSCStateImpl) {
+				DSCState state = (DSCState) object;
+
+				// per tutte le transizioni in uscita
+				for (int i = 0; i < state.getSourceRelationships().size(); i++) {
+					if (state.getSourceRelationships().get(i) instanceof Transition) {
+						Transition transition = (Transition) state
+								.getSourceRelationships().get(i);
+						String actionID = transition.getActionID();
+						String guardID = transition.getGuardID();
+						String eventID = transition.getEventID();
+
+						StringTokenizer bodyTokenizer = null;
+
+						if (actionsList != null) {
+							// inserisco nella mappa le azioni definite nella
+							// transition
+							smartInsertIntoHashMap(actionsMap, actionID, state);
+
+							// inserisco nella mappa le azioni definite nei body
+							// delle action
+							bodyTokenizer = new StringTokenizer(getGoraBody(
+									actionsList.getAnElement(), actionID, "")
+									.toString(), ";");
+							smartInsertIntoHashMap(actionsMap,
+									getCalledElements(bodyTokenizer, "<--",
+											"-->"), state);
+
+							// inserisco nella mappa le funzioni definite nei
+							// body delle action
+							bodyTokenizer = new StringTokenizer(getGoraBody(
+									actionsList.getAnElement(), actionID, "")
+									.toString(), ";");
+							smartInsertIntoHashMap(functionsMap,
+									getCalledElements(bodyTokenizer, "<-f-",
+											"("), state);
+						}
+
+						if (guardsList != null) {
+							// inserisco nella mappa le guard definite a top
+							// level
+							smartInsertIntoHashMap(guardsMap, guardID, state);
+
+							// inserisco nella mappa le guard definite nei body
+							// delle guard
+							bodyTokenizer = new StringTokenizer(getGoraBody(
+									guardsList.getAnElement(), guardID, "")
+									.toString(), ";");
+							smartInsertIntoHashMap(guardsMap,
+									getCalledElements(bodyTokenizer, "<--",
+											"-->"), state);
+
+							// inserisco nella mappa le funzioni definite nei
+							// body delle guard
+							bodyTokenizer = new StringTokenizer(getGoraBody(
+									guardsList.getAnElement(), guardID, "")
+									.toString(), ";");
+							smartInsertIntoHashMap(functionsMap,
+									getCalledElements(bodyTokenizer, "<-f-",
+											"("), state);
+						}
+
+						// inserisco nella mappa tutti gli eventi
+						if (eventID != null && !eventID.equals(""))
+							if (!eventsMap.containsKey(eventID))
+								eventsMap.put(eventID, "");
+					}
+				}
+
+				if (!state.isIsSimple()) {
+
+					// Gestisco la start transition solamente per gli stati
+					// composti
+					Transition startTransition = getStartTransition(state);
+					String actionIDST = startTransition.getActionID();
+					StringTokenizer bodyTokenizerST = null;
+					if (actionsList != null) {
+						// inserisco nella mappa le azioni definite nella
+						// startTransition
+						smartInsertIntoHashMap(actionsMap, actionIDST, state);
+
+						// inserisco nella mappa le azioni definite nei body
+						// delle action
+						bodyTokenizerST = new StringTokenizer(getGoraBody(
+								actionsList.getAnElement(), actionIDST, "")
+								.toString(), ";");
+						smartInsertIntoHashMap(actionsMap, getCalledElements(
+								bodyTokenizerST, "<--", "-->"), state);
+
+						// inserisco nella mappa le funzioni definite a nei body
+						// delle action
+						bodyTokenizerST = new StringTokenizer(getGoraBody(
+								actionsList.getAnElement(), actionIDST, "")
+								.toString(), ";");
+						smartInsertIntoHashMap(functionsMap, getCalledElements(
+								bodyTokenizerST, "<-f-", "("), state);
+					}
+
+					// gestiamo l'azione associata alla Default Deep/Shallow
+					// History Entrance
+					if (state.getDeepHistory() != null) {
+						for (int i = 0; i < state.getDeepHistory()
+								.getSourceRelationships().size(); i++) {
+							if (state.getDeepHistory().getSourceRelationships()
+									.get(i) instanceof Transition) {
+								Transition transition = (Transition) state
+										.getDeepHistory()
+										.getSourceRelationships().get(i);
+								String actionID = transition.getActionID();
+								StringTokenizer bodyTokenizer = null;
+								if (actionsList != null) {
+									// inserisco nella mappa le azioni definite
+									// nella transizione
+									smartInsertIntoHashMap(actionsMap,
+											actionID, state);
+
+									// inserisco nella mappa le azioni definite
+									// nei body delle action
+									bodyTokenizer = new StringTokenizer(
+											getGoraBody(
+													actionsList.getAnElement(),
+													actionID, "").toString(),
+											";");
+									smartInsertIntoHashMap(actionsMap,
+											getCalledElements(bodyTokenizer,
+													"<--", "-->"), state);
+
+									// inserisco nella mappa le funzioni
+									// definite a nei body delle action
+									bodyTokenizer = new StringTokenizer(
+											getGoraBody(
+													actionsList.getAnElement(),
+													actionID, "").toString(),
+											";");
+									smartInsertIntoHashMap(functionsMap,
+											getCalledElements(bodyTokenizer,
+													"<-f-", "("), state);
+								}
+							}
+						}
+					}
+					if (state.getShallowHistory() != null) {
+						for (int i = 0; i < state.getShallowHistory()
+								.getSourceRelationships().size(); i++) {
+							if (state.getShallowHistory()
+									.getSourceRelationships().get(i) instanceof Transition) {
+								Transition transition = (Transition) state
+										.getShallowHistory()
+										.getSourceRelationships().get(i);
+								String actionID = transition.getActionID();
+								StringTokenizer bodyTokenizer = null;
+								if (actionsList != null) {
+									// inserisco nella mappa le azioni definite
+									// nella transizione
+									smartInsertIntoHashMap(actionsMap,
+											actionID, state);
+
+									// inserisco nella mappa le azioni definite
+									// nei body delle action
+									bodyTokenizer = new StringTokenizer(
+											getGoraBody(
+													actionsList.getAnElement(),
+													actionID, "").toString(),
+											";");
+									smartInsertIntoHashMap(actionsMap,
+											getCalledElements(bodyTokenizer,
+													"<--", "-->"), state);
+
+									// inserisco nella mappa le funzioni
+									// definite a nei body delle action
+									bodyTokenizer = new StringTokenizer(
+											getGoraBody(
+													actionsList.getAnElement(),
+													actionID, "").toString(),
+											";");
+									smartInsertIntoHashMap(functionsMap,
+											getCalledElements(bodyTokenizer,
+													"<-f-", "("), state);
+								}
+							}
+						}
+					}
+
+				}
+
+			}
+		}
+	}
+
+	/**
+	 * Ritorna l'ancestor tra i due elementi del modello
+	 * 
+	 * @param state1
+	 * @param state2
+	 * @return
+	 */
+	public EObject getAncestor(EObject state1, EObject state2) {
+		EObject ancestor;
+
+		int depthState1 = findDepth(parent, state1);
+		int depthState2 = findDepth(parent, state2);
+
+		if (depthState1 > depthState2)
+			ancestor = calculateAncestor(state1, state2);
+		else
+			ancestor = calculateAncestor(state2, state1);
+
+		return ancestor;
+	}
+
+	/**
+	 * Calcola la profondità di state rispetto a rif
+	 * 
+	 * @param rif
+	 * @param state
+	 * @return 0 se immediatamente contenuto.<br>
+	 *         -1 se sono allo stesso livello
+	 * 
+	 */
+	public int findDepth(EObject rif, EObject state) {
+		int depth = 0;
+		// se il riferimento e lo stato sono uguali
+		if (rif.equals(state))
+			return -1;
+		boolean cont = true;
+
+		while (cont) {
+			if (rif.equals(state.eContainer())) {
+				cont = false;
+			} else {
+				state = (EObject) state.eContainer();
+				depth++;
+			}
+		}
+		return depth;
+	}
+
+	/**
+	 * Ritorna l'ancestor tra state1 e state2 se il primo è più profondo del
+	 * secondo
+	 * 
+	 * @param state1
+	 * @param state2
+	 * @return
+	 */
+	private EObject calculateAncestor(EObject state1, EObject state2) {
+		{
+			boolean cont = true;
+			while (cont) {
+				if (EcoreUtil.isAncestor(state1, state2)) {
+					cont = false;
+				} else {
+					if (state1.eContainer() instanceof DSCState) {
+						state1 = (DSCState) state1.eContainer();
+					} else {
+						return parent;
+					}
+				}
+			}
+			return state1;
+		}
+	}
+
+	/**
+	 * Serve per caricare in memoria le risorse necessarie alla generazione del
+	 * codice relativa a guard e action
+	 * 
+	 * @param fileName
+	 * @return
+	 * 
+	 * @author samuele
+	 */
+
+	private AnElementList loadGoraResource(String fileName) {
+		AnElementList content = null;
+
+		IFile diagramFile = ((FileEditorInput) PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage().getActiveEditor()
+				.getEditorInput()).getFile();
+		IProject project = diagramFile.getProject();
+		// serve per gestire la posizione relativa del file
+		// TODO
+		// IPath relativePath=file.getProjectRelativePath();
+		IFile resourceFile = project.getFile(fileName);
+
+		URI uri = URI.createPlatformResourceURI(resourceFile.getFullPath()
+				.toString());
+
+		Resource resource = null;
+		try {
+			resource = resourceSet.getResource(uri, true);
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			if (e.getCause().getClass().getSimpleName().equals(
+					"ResourceException"))
+				return null;
+		}
+
+		EList l = resource.getContents();
+		if (l != null) {
+			Iterator i = l.iterator();
+			while (i.hasNext()) {
+				Object o = i.next();
+				if (o instanceof AnElementList)
+					content = (AnElementList) o;
+			}
+			;
+		}
+		return content;
+	}
+
+	public Transition getStartTransition(DSCState state) {
+		StartPoint startPoint = null;
+		for (int i = 0; i < state.getVisualElements().size(); i++) {
+			if (state.getVisualElements().get(i) instanceof StartPoint) {
+				startPoint = (StartPoint) state.getVisualElements().get(i);
+				break;
+			}
+		}
+
+		for (int i = 0; i < startPoint.getSourceRelationships().size(); i++) {
+			if (startPoint.getSourceRelationships().get(i) instanceof Transition) {
+				return (Transition) startPoint.getSourceRelationships().get(i);
+			}
+		}
+		return null;
+	}
+
+	private TriggerList loadEventTypeList(String eventFile) {
+		IFile diagramFile = ((FileEditorInput) PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage().getActiveEditor()
+				.getEditorInput()).getFile();
+
+		IProject project = diagramFile.getProject();
+
+		IFile resourceFile = project.getFile(eventFile);
+
+		URI uri = URI.createPlatformResourceURI(resourceFile.getFullPath()
+				.toString());
+
+		Resource eventResource = null;
+		try {
+			eventResource = resourceSet.getResource(uri, true);
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			if (e.getCause().getClass().getSimpleName().equals(
+					"ResourceException"))
+				return null;
+
+		}
+
+		return (TriggerList) eventResource.getContents().get(0);
+	}
+
+	private FunctionList loadFunctionResource(String functionFile) {
+
+		IFile diagramFile = ((FileEditorInput) PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage().getActiveEditor()
+				.getEditorInput()).getFile();
+
+		IProject project = diagramFile.getProject();
+
+		IFile resourceFile = project.getFile(functionFile);
+
+		URI uri = URI.createPlatformResourceURI(resourceFile.getFullPath()
+				.toString());
+
+		Resource functionResource = null;
+		try {
+			functionResource = resourceSet.getResource(uri, true);
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			if (e.getCause().getClass().getSimpleName().equals(
+					"ResourceException"))
+				return null;
+		}
+
+		return (FunctionList) functionResource.getContents().get(0);
+	}
+
+	public void generateFileWithThisCode(String name, String code,
+			IJavaElement folder) {
+
+		IPackageFragment qqq = (IPackageFragment) folder;
+		try {
+			qqq.createCompilationUnit(name, code, true,
+					new NullProgressMonitor()); // se il file da creare esiste
+												// già, viene sostituito
+		} catch (JavaModelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public List getUsedEventIDList() {
+
+		eventsMap.entrySet().toArray();
+		Iterator i = eventsMap.entrySet().iterator();
+		List<String> list = new ArrayList();
+
+		while (i.hasNext()) {
+			Map.Entry<String, String> entry = (Map.Entry<String, String>) i
+					.next();
+
+			list.add(entry.getKey());
+		}
+
+		return list;
+	}
+
+	public TriggerList getEventTypeList() {
+		return triggerList;
+	}
+
+	/**
+	 * Ritorna l'elemento del modello con il nome passato come parametro
+	 * 
+	 * @param eventTypeName
+	 * @return
+	 */
+	public Trigger getEventType(String eventTypeName) {
+		for (int i = 0; i < triggerList.eContents().size(); i++) {
+			if (((Trigger) (triggerList.eContents().get(i))).getTriggerName()
+					.equals(eventTypeName)) {
+				return ((Trigger) (triggerList.eContents().get(i)));
+			}
+		}
+		return null;
+	}
+
+	public void generateImportsFromVariables(StringBuffer imports) {
+		for (int i = 0; i < parent.getDiagramVariables().size(); i++) {
+			String type = ((TypeDiagramVariable) parent.getDiagramVariables()
+					.get(i)).getType();
+			generateImportForType(type, imports);
+		}
+
+		TreeIterator o = parent.eAllContents();
+		while (o.hasNext()) {
+			Object object = o.next();
+			if (object instanceof DSCStateImpl) {
+				DSCState state = (DSCState) object;
+				for (int i = 0; i < state.getVariables().size(); i++) {
+					String type = ((TypeVariable) state.getVariables().get(i))
+							.getType();
+					generateImportForType(type, imports);
+				}
+			}
+		}
+
+		List<String> triggeringEventsList = getUsedEventIDList();
+		for (int i = 0; i < triggeringEventsList.size(); i++) {
+			String eventTypeName = triggeringEventsList.get(i);
+			Trigger eventType = getEventType(eventTypeName);
+			for(int j = 0; j < eventType.getParameters().size(); j++) {
+				TypeVariable parameter = (TypeVariable) eventType.getParameters().get(j);
+				String type = parameter.getType();
+				generateImportForType(type, imports);
+			}
+		}
+	}
+	
+	private void generateImportForType(String type, StringBuffer imports) {
+		if (type.contains(".")) {
+			type = type.replace('[', ' ');
+			type = type.replace(']', ' ');
+			
+			if(type.contains("<")){
+				type = type.substring(0, type.indexOf("<"));
+			}
+			
+			String currentImport = "import " + type + ";\n";
+			if(imports.toString().contains(currentImport) == false){
+				imports.append(currentImport);
+			}
+		}
+	}
+
+	private List<String> getCalledElements(StringTokenizer bodyTokenizer,
+			String startDel, String endDel) {
+		List<String> result = new ArrayList<String>();
+		// StringTokenizer bodyTokenizer=new StringTokenizer(getGoraBody(list,
+		// actionId,"").toString(),";");
+
+		while (bodyTokenizer.hasMoreTokens()) {
+			String body = bodyTokenizer.nextToken();
+			int start = body.indexOf(startDel);
+			int end = body.indexOf(endDel, start);
+			if (start != -1 && end != -1)
+				result.add(body.substring(start + startDel.length(), end));
+		}
+		return result;
+	}
+
+	private void smartInsertIntoHashMap(HashMap map, String actionID,
+			DSCState state) {
+		if (actionID != null && !actionID.equals("")) {
+			if (!map.containsKey(actionID)) {
+				map.put(actionID, state);
+			} else {
+				Object ancestor = getAncestor((DSCState) map.get(actionID),
+						state);
+				map.put(actionID, ancestor);
+			}
+		}
+	}
+
+	private void smartInsertIntoHashMap(HashMap map, List actionInnerList,
+			DSCState state) {
+		Iterator<String> i = actionInnerList.iterator();
+
+		while (i.hasNext()) {
+			String actionID = i.next().trim();
+
+			if (actionID != null && !actionID.equals("")) {
+
+				if (!map.containsKey(actionID)) {
+					map.put(actionID, state);
+
+				} else {
+					Object ancestor = getAncestor((DSCState) map.get(actionID),
+							state);
+					map.put(actionID, ancestor);
+				}
+			}
+		}
+	}
+
+	private StringBuffer replaceActionCalled(StringBuffer result) {
+		String io = result.toString();
+		io = io.replaceAll("<--", "");
+		io = io.replaceAll("-->", "(e)");
+		return new StringBuffer(io);
+	}
+
+	private StringBuffer replaceGuardCalled(StringBuffer result) {
+		String io = result.toString();
+		io = io.replaceAll("<--", "");
+		io = io.replaceAll("-->", "(e)");
+		return new StringBuffer(io);
+	}
+
+	private StringBuffer replaceFunctionCalled(StringBuffer result) {
+		String io = result.toString();
+		io = io.replaceAll("<-f-", "");
+		io = io.replaceAll("-f->", "");
+		return new StringBuffer(io);
+	}
+
+	public void generateImportsFromClasspath(StringBuffer buffer) {
+		IJavaElement jElement = JavaCore.create((IResource) fileInput
+				.getProject());
+		IJavaProject newJProject = jElement.getJavaProject();
+		try {
+			// per tutte le entry del classpath
+			for (int i = 0; i < newJProject.getRawClasspath().length; i++) {
+				// per la entry di tipo source
+				if (newJProject.getRawClasspath()[i].getEntryKind() == IClasspathEntry.CPE_SOURCE) {
+					IFolder folder = fileInput.getProject().getFolder(
+							newJProject.getRawClasspath()[i].getPath()
+									.removeFirstSegments(1));
+					try {
+						for (int j = 0; j < folder.members().length; j++) {
+							String currentImport = "import "
+									+ folder.members()[j]
+											.getProjectRelativePath()
+											.removeFirstSegments(1).toString()
+									+ ".*;\n";
+							if (buffer.toString().contains(currentImport) == false) {
+								buffer.append(currentImport);
+							}
+						}
+					} catch (CoreException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if (newJProject.getRawClasspath()[i].getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
+					IPackageFragmentRoot root = newJProject
+							.getPackageFragmentRoot(newJProject
+									.getRawClasspath()[i].toString());
+					// root.open(null);
+					// root.getChildren();
+					// SelectionDialog dialog=JavaUI.createPackageDialog(new
+					// Shell(), root);
+					// dialog.open();
+
+				}
+			}
+
+		} catch (JavaModelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/DSCModel/src"
+    modelPluginID="DSCModel" modelName="DscDiagramModel" importerID="org.eclipse.emf.importer.ecore"
+    usedGenPackages="../../genericUMLDiagramModel/model/genericUMLDiagramModel.genmodel#//genericUMLDiagramModel">
+  <foreignModel>dscDiagramModel.ecore</foreignModel>
+  <genPackages prefix="DscDiagramModel" disposableProviderFactory="true" ecorePackage="dscDiagramModel.ecore#/">
+    <genDataTypes ecoreDataType="dscDiagramModel.ecore#//Variable"/>
+    <genDataTypes ecoreDataType="dscDiagramModel.ecore#//DiagramVariable"/>
+    <genClasses ecoreClass="dscDiagramModel.ecore#//DSCDiagram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//DSCDiagram/eventFile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//DSCDiagram/guardFile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//DSCDiagram/actionFile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//DSCDiagram/diagramVariables"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//DSCDiagram/functionFile"/>
+    </genClasses>
+    <genClasses ecoreClass="dscDiagramModel.ecore#//AnchorNoteToItem"/>
+    <genClasses ecoreClass="dscDiagramModel.ecore#//Transition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//Transition/transitionID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//Transition/eventID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//Transition/guardID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//Transition/actionID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//Transition/showProperties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//Transition/showTransitionID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//Transition/triggeredByEvent"/>
+    </genClasses>
+    <genClasses ecoreClass="dscDiagramModel.ecore#//StartPoint">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dscDiagramModel.ecore#//StartPoint/compositeState"/>
+    </genClasses>
+    <genClasses ecoreClass="dscDiagramModel.ecore#//ShallowHistory">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dscDiagramModel.ecore#//ShallowHistory/compositeState"/>
+    </genClasses>
+    <genClasses ecoreClass="dscDiagramModel.ecore#//DeepHistory">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dscDiagramModel.ecore#//DeepHistory/compositeState"/>
+    </genClasses>
+    <genClasses ecoreClass="dscDiagramModel.ecore#//DSCState">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dscDiagramModel.ecore#//DSCState/startPoint"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dscDiagramModel.ecore#//DSCState/shallowHistory"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dscDiagramModel.ecore#//DSCState/deepHistory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//DSCState/Variables"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dscDiagramModel.ecore#//DSCState/isSimple"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

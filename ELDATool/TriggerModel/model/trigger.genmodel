@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/TriggerModel/src"
+    modelPluginID="TriggerModel" modelName="Trigger" importerID="org.eclipse.emf.importer.ecore"
+    usedGenPackages="../../DSCModel/model/dscDiagramModel.genmodel#//dscDiagramModel ../../genericUMLDiagramModel/model/genericUMLDiagramModel.genmodel#//genericUMLDiagramModel">
+  <foreignModel>trigger.ecore</foreignModel>
+  <genPackages prefix="TriggerModel" disposableProviderFactory="true" ecorePackage="trigger.ecore#/">
+    <genClasses ecoreClass="trigger.ecore#//TriggerList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference trigger.ecore#//TriggerList/trigger"/>
+    </genClasses>
+    <genClasses ecoreClass="trigger.ecore#//Trigger">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference trigger.ecore#//Trigger/triggerList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trigger.ecore#//Trigger/extendUDEvent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trigger.ecore#//Trigger/extendedEvent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trigger.ecore#//Trigger/parameters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trigger.ecore#//Trigger/triggerName"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

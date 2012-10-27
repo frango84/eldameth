@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/function/src"
+    modelPluginID="function" modelName="Function" importerID="org.eclipse.emf.importer.ecore"
+    usedGenPackages="../../model/model/dscDiagramModel.genmodel#//dscDiagramModel ../../genericUMLDiagramModel/model/genericUMLDiagramModel.genmodel#//genericUMLDiagramModel">
+  <foreignModel>function.ecore</foreignModel>
+  <genPackages prefix="Function" disposableProviderFactory="true" ecorePackage="function.ecore#/">
+    <genClasses ecoreClass="function.ecore#//FunctionList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference function.ecore#//FunctionList/function"/>
+    </genClasses>
+    <genClasses ecoreClass="function.ecore#//Function">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference function.ecore#//Function/functionList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute function.ecore#//Function/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute function.ecore#//Function/returnedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute function.ecore#//Function/parameter"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

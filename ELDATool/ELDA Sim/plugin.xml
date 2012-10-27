@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="Prova.actionSet"
+            label="Sample Action Set"
+            visible="true">
+         <menu
+               id="eldaSimMenu"
+               label="ELDA Simulation">
+            <groupMarker
+                  name="eldaSimGroupMarker">
+            </groupMarker>
+         </menu>
+         <action
+               class="eldasim.actions.ControllerAction"
+               id="ELDASim.ControllerAction"
+               label="Run ELDASim Controller"
+               menubarPath="eldaSimMenu/eldaSimGroupMarker"/>
+         <action
+               class="eldasim.actions.SetupAction"
+               id="ELDASim.SetupAction"
+               label="Run Simulation Setup"
+               menubarPath="eldaSimMenu/eldaSimGroupMarker"/>
+      </actionSet>
+   </extension>
+
+</plugin>

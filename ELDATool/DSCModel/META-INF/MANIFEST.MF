@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DSC Model plug-in
+Bundle-SymbolicName: DSCModel; singleton:=true
+Bundle-Version: 3.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: lisdip.deis.unical.it
+Bundle-Localization: plugin
+Export-Package: dscDiagramModel,
+ dscDiagramModel.impl,
+ dscDiagramModel.myDataTypes,
+ dscDiagramModel.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ GenericDiagramModel;visibility:=reexport,
+ ActionGuardModel
+Eclipse-AutoStart: true
